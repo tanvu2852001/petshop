@@ -1,0 +1,24 @@
+<div class="mt-4">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card-body card-product border">
+                <img class="card-img-top" src="{{product.thumbnail}}">
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card-body card-product border">
+                <h2>{{product.name}}</h2>
+                <p class="card-text">Price: {{formatCurrency product.price}}</p>
+                <p class="card-text">Category: {{product.category}}</p>
+                <p class="card-text">Quantity: {{product.quantity}}</p>
+                <p class="card-text">Description: {{product.des}}</p>
+                {{#if product.quantity}}
+                <a href="/cart/add_to_cart/{{product.slug}}" class="btn btn-primary btn-block">ADD TO CART</a>
+                {{else}}
+                <button class="btn btn-secondary btn-block" disabled>OUT OF STOCK</button>
+                {{/if}}
+            </div>
+        </div>
+
+    </div>
+</div>

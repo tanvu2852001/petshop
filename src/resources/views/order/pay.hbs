@@ -1,0 +1,42 @@
+<div class="mt-4 ml-5 mr-5">
+    <div class="row justify-content-lg-center">
+        <ol id="progress-bar" style="margin: auto;">
+            <li class="step-done">CART</li>
+            <li class="step-done">CHECKOUT</li>
+            <li class="step-active">PAY</li>
+        </ol>
+    </div>
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-6">
+            <form method="POST" action="/order/pay">
+                <div class="form-group">
+                    <label for="card_number">Card number</label>
+                    <input class="form-control" id="card_number" name="card_number" value="" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name_on_card">Name on card</label>
+                    <input class="form-control" id="name_on_card" name="name_on_card" value="" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="expiry_date">Expiry date</label>
+                            <input class="form-control" id="expiry_date" name="expiry_date" value="" required>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="security_code">Security code</label>
+                            <input class="form-control" type="password" id="security_code" name="security_code" value="">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">PAY</button>
+            </form>
+        </div>
+    </div>
+</div>

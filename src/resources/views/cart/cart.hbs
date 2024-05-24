@@ -1,0 +1,56 @@
+<div class="mt-4 ml-5 mr-5">
+    {{#if cart.totalQty}}
+    <div class="row justify-content-lg-center">
+        <ol id="progress-bar" style="margin: auto;">
+            <li class="step-active">CART</li>
+            <li class="step-todo">CHECKOUT</li>
+            <li class="step-todo">PAY</li>
+        </ol>
+    </div>
+    {{/if}}
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Thumbnail</th>
+                <th scope="col">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each cart.items}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>
+                    <a href="/product/{{this.product.slug}}" class="btn btn-link">
+                        <img class="product-thumbnail" src={{this.product.thumbnail}}>
+                    </a>
+                </td>
+                <td><a href="/product/{{this.product.slug}}" class="btn btn-link">{{this.product.name}}</a></td>
+                <td>{{formatCurrency this.product.price}}</td>
+                <td>{{this.quantity}}</td>
+                <td>
+                    <a href="/cart/increase/{{this.product.slug}}" class="btn btn-primary">+</a>
+                    <a href="/cart/decrease/{{this.product.slug}}" class="btn btn-secondary">-</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="6" class="text-center">
+                    <h3>Empty cart!</h3>
+                    <a href="/" class="btn btn-primary">Continue shopping</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{#if cart.totalQty}}
+    <div class="text-right">
+        <h4>Total price: {{formatCurrency cart.totalPrice}}</h4>
+        <h4>Total quantity: {{cart.totalQty}}</h4>
+        <a href="/order/checkout" class="btn btn-primary">Checkout</a>
+    </div>
+    {{/if}}
+</div>

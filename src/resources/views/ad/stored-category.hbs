@@ -1,0 +1,87 @@
+<div class="mt-4 ml-5 mr-5">
+    <div>
+        <h3>List Categories</h3>
+        <a href="/ad/trash/category">Temporary trash can</a>
+        
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name Category</th>
+                <th scope="col">Created Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    <tbody>
+        {{#each category}} 
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <a href="/ad/{{this._id}}/editcategory" class="btn btn-link">Update</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Delete</a>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+                Empty category list!
+                <a href="/ad/createcategory">Add new category</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+
+{{!Confirm}}
+
+<div id="deleteModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Notification</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Do you really want to delete this category?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+            <button id="btn-delete-category" type="button" class="btn btn-primary">YES</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-category-form" method="POST"></form>
+
+<script>   
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        var categoryId;
+        var deleteForm = document.forms['delete-category-form']
+        var btnDeleteCategory = document.getElementById('btn-delete-category')
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            categoryId = button.data('id')
+        })
+        
+        btnDeleteCategory.onclick = function () {
+            deleteForm.action = '/ad/' + categoryId + '?_method=DELETE'
+            deleteForm.submit()
+        }
+    })
+
+</script>
+
+<style>
+    .mt-4 {
+    padding-bottom: 450px;
+}
+</style>

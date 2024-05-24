@@ -1,0 +1,16 @@
+<div class="mt-4">
+    <h3>EDIT PRODUCT</h3>
+        <form method="POST" action="/ad/{{category._id}}?_method=PUT">
+            <div class="form-group">
+                <label for="name">Product's Name</label>
+                <input class="form-control" value="{{category.name}}" id="name" name="name">
+            </div>
+
+            <button type="submit" class="btn btn-primary">SAVE UPDATE</button>
+        </form>
+</div>
+<style>
+    .mt-4 {
+    padding-bottom: 450px;
+}
+</style>

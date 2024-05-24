@@ -1,0 +1,36 @@
+<div class="mt-4 ml-5 mr-5">
+    <div class="row justify-content-lg-center">
+        <ol id="progress-bar" style="margin: auto;">
+            <li class="step-done">CART</li>
+            <li class="step-active">CHECKOUT</li>
+            <li class="step-todo">PAY</li>
+        </ol>
+    </div>
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-6">
+            <form method="POST" action="/order/checkout">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" id="email" name="email" value="{{cart.checkout.email}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input class="form-control" id="phone" name="phone" value="{{cart.checkout.phone}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="shipping_address">Shipping address</label>
+                    <input class="form-control" id="shipping_address" name="shipping_address" value="{{cart.checkout.shipping_address}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="note">Note</label>
+                    <input class="form-control" id="note" name="note" value="{{cart.checkout.note}}">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">CONTINUE</button>
+            </form>
+        </div>
+    </div>
+</div>

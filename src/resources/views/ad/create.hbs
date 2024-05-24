@@ -1,0 +1,47 @@
+<div class="mt-4">
+    <h3>NEW PRODUCT</h3>
+        <form method="POST" action="/ad/store">
+            <div class="form-group">
+                <label for="name">Product's Name</label>
+                <input class="form-control" id="name" name="name">
+            </div>
+            
+            <div class="form-group">
+                <label for="price">Product's Price</label>
+                <input class="form-control" id="price" name="price">
+            </div>
+            
+            <div class="form-group">
+                <label>Product's Category</label>
+                    <select class="form-control" id="category" name="category" required>
+                        <option>-- Select Category --</option>
+                        {{#each category}}
+                        <option>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="quantity">Product's Quantity</label>
+                <input class="form-control" id="quantity" name="quantity">
+            </div>
+            
+            <div class="form-group">
+                <label for="des">Product's Description</label>
+                <input class="form-control" id="des" name="des">
+            </div>
+
+            <div class="form-group">
+                <label for="thumbnail">Product's Thumbnail</label>
+                <input class="form-control" id="thumbnail" name="thumbnail">
+            </div>
+
+            <button type="submit" class="btn btn-primary">ADD NEW PRODUCT</button>
+        </form>
+</div>
+
+<style>
+    .mt-4 {
+    padding-bottom: 450px;
+}
+</style>

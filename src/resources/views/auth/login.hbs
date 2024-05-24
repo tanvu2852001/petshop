@@ -1,0 +1,27 @@
+{{!-- <div class="mt-4"> --}}
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-6">
+            <h3>LOGIN</h3>
+            <form method="POST" action="/auth/login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input class="form-control" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input class="form-control" type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+    {{!--
+</div> --}}
+
+<style>
+    .mt-4 {
+        padding-bottom: 450px;
+    }
+</style>

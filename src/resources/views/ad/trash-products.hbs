@@ -1,0 +1,97 @@
+<div class="mt-4 ml-5 mr-5">
+    <div>
+        <h3>Deleted products list</h3>
+        <a href="/ad/stored-products">Back to list products</a>
+    </div>
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name Products</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Deleted Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+    <tbody>
+        {{#each products}} 
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.deletedAt}}</td>
+            <td>
+                <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a>
+                <a href="/" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#deleteModal">Permanently deleted</a>
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="5" class="text-center">
+                No products have been deleted yet!
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</div>
+
+{{!Confirm}}
+
+<div id="deleteModal" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Notification</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>This action cannot be undone. Do you really want to delete force this product?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO</button>
+            <button id="btn-delete-product" type="button" class="btn btn-primary">YES</button>
+        </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-product-form" method="POST"></form>
+<form name="restore-product-form" method="POST"></form>
+
+<script>   
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        var productId;
+        var deleteForm = document.forms['delete-product-form']
+        var restoreForm = document.forms['restore-product-form']
+        var btnDeleteProduct = document.getElementById('btn-delete-product')
+        var restoreBtn = $('.btn-restore')
+
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            productId = button.data('id')
+        })
+        
+        btnDeleteProduct.onclick = function () {
+            deleteForm.action = '/ad/' + productId + '/force?_method=DELETE'
+            deleteForm.submit()
+        }
+
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            
+            var productId = $(this).data('id');
+            restoreForm.action = '/ad/' + productId + '/restore?_method=PATCH'
+            restoreForm.submit()
+        })
+    })
+
+</script>
+<style>
+    .mt-4 {
+    padding-bottom: 450px;
+}
+</style>
